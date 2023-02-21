@@ -5,12 +5,24 @@ import { GroceryList } from './GroceryList';
 
 export default class App extends Component {
   state = {
-    name: 'Abel M. Lugtu Jr',
-    age: 26,
-    DOB: '09-06-1996',
-    salary: 10000,
-    designation: 'MS Tech Solution Trainee',
-    image: Images.catImage,
+    employeeData: [
+      {
+        name: 'Abel M. Lugtu Jr',
+        age: 26,
+        DOB: '09-06-1996',
+        salary: 10000,
+        designation: 'MS Tech Solution Trainee',
+        image: Images.catImage,
+      },
+      {
+        name: 'Abel M. Lugtu Jr',
+        age: 30,
+        DOB: '09-06-1997',
+        salary: 100000,
+        designation: 'MS Tech Solution Trainee 2',
+        image: Images.catImage,
+      },
+    ],
     groceryData: [
       {
         id: 1,
@@ -22,20 +34,39 @@ export default class App extends Component {
     ],
   };
 
-  handleMouseEnter = () => {
-    alert(
-      `${this.state.name}\n${this.state.age}\n${this.state.DOB}\n${this.state.salary}\n${this.state.designation}\n`
-    );
+  handleMouseEnter = (name, age, dob, salary, designation) => {
+    alert(`${name}\n${age}\n${dob}\n${salary}\n${designation}\n`);
   };
 
   render() {
     return (
       <div className="App">
-        <img alt="Person" className="profile-image" src={this.state.image} />
-        <h1 className="name" onMouseEnter={this.handleMouseEnter}>
-          {this.state.name}
-        </h1>
-        <p>{this.state.designation}</p>
+        {this.state.employeeData.map((employee) => {
+          return (
+            <div>
+              <img
+                alt="Person"
+                className="profile-image"
+                src={employee.image}
+              />
+              <h1
+                className="name"
+                onMouseEnter={() => {
+                  this.handleMouseEnter(
+                    employee.name,
+                    employee.age,
+                    employee.dob,
+                    employee.salary,
+                    employee.designation
+                  );
+                }}
+              >
+                {employee.name}
+              </h1>
+              <p>{employee.designation}</p>
+            </div>
+          );
+        })}
         <GroceryList groceryData={this.state.groceryData} />
       </div>
     );

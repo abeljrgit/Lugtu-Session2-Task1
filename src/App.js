@@ -15,7 +15,7 @@ export default class App extends Component {
         image: Images.catImage,
       },
       {
-        name: 'Abel M. Lugtu Jr',
+        name: 'Abel...',
         age: 30,
         DOB: '09-06-1997',
         salary: 100000,
